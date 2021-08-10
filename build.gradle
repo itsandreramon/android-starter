@@ -1,0 +1,56 @@
+buildscript {
+    ext {
+        buildConfig = [
+                'compileSdk': 30,
+                'minSdk'    : 23,
+                'targetSdk' : 30,
+        ]
+    }
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath libs.android.gradlePlugin
+        classpath libs.kotlin.gradlePlugin
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply from: rootProject.file('ktlint.gradle')
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions {
+            freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+            freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.FlowPreview"
+            jvmTarget = "11"
+        }
+    }
+
+    configurations.configureEach {
+        exclude group: 'androidx.appcompat'
+        exclude group: 'com.google.android.material', module: 'material'
+
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            def group = details.requested.group
+            def module = details.requested.module.name
+
+            if (group == 'org.jetbrains.kotlin' && module.startsWith('kotlin-stdlib')) {
+                details.useVersion libs.versions.kotlin.get()
+            }
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

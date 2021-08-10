@@ -1,0 +1,68 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.secrets_gradle_plugin' version '0.6'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk buildConfig.compileSdk
+
+    defaultConfig {
+        minSdk buildConfig.minSdk
+        targetSdk buildConfig.targetSdk
+
+        versionName "0.1.0"
+        versionCode 1
+
+        applicationId "de.thb.rulona"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+
+            versionNameSuffix "-dev"
+            applicationIdSuffix ".debug"
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion libs.versions.androidx.compose.lib.get()
+    }
+}
+
+dependencies {
+    implementation project(':core')
+    implementation project(':ui')
+
+    implementation libs.koin.core
+    implementation libs.koin.android
+
+    implementation libs.androidx.activity.compose
+    implementation libs.androidx.navigation.compose
+
+    implementation libs.androidx.compose.ui.ui
+    implementation libs.androidx.compose.ui.tooling
+    implementation libs.androidx.compose.material.material
+    implementation libs.androidx.compose.material.icons
+
+    implementation libs.airbnb.mavericks.compose
+    implementation libs.google.accompanist.insets
+
+    debugImplementation libs.square.leakCanary
+}

@@ -1,0 +1,51 @@
+plugins {
+    id 'com.android.library'
+    id 'com.google.secrets_gradle_plugin' version '0.6'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk buildConfig.compileSdk
+
+    defaultConfig {
+        minSdk buildConfig.minSdk
+        targetSdk buildConfig.targetSdk
+    }
+
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion libs.versions.androidx.compose.lib.get()
+    }
+}
+
+dependencies {
+    implementation project(':core')
+
+    coreLibraryDesugaring libs.android.desugar
+
+    implementation libs.koin.core
+    implementation libs.koin.android
+    implementation libs.koin.compose
+
+    implementation libs.androidx.activity.compose
+    api libs.androidx.navigation.compose
+
+    implementation libs.androidx.compose.ui.ui
+    implementation libs.androidx.compose.ui.tooling
+    implementation libs.androidx.compose.material.material
+    implementation libs.androidx.compose.material.icons
+
+    implementation libs.androidx.lifecycle.runtime
+
+    implementation libs.airbnb.mavericks.compose
+    implementation libs.google.accompanist.insets
+}
