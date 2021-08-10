@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="screen_title_one">One</string>
+    <string name="screen_title_two">Two</string>
+</resources>

@@ -1,0 +1,6 @@
+fragment bookFragment on Book {
+    uuid
+    author
+    title
+    created
+}

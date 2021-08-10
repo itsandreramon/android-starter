@@ -1,0 +1,39 @@
+name: Build
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        java: [ '11', '18' ]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Java ${{ matrix.java }}
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'zulu'
+          cache: 'gradle'
+
+      - name: Set up Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: wrapper
+
+      - name: Create local.properties
+        run: touch local.properties
+
+      - name: Run lint
+        run: ./gradlew app:lintDebug ktlintCheck
+
+      - name: Build and test project
+        run: ./gradlew build testDebugUnitTest --stacktrace --scan
+

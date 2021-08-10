@@ -1,0 +1,21 @@
+# Secrets
+debug.keystore.jks
+keystore.properties
+secrets.properties
+
+# Gradle
+.gradle
+
+# Android Studio
+**/*/build/
+build
+/captures
+/local.properties
+/.idea/
+.externalNativeBuild
+.cxx
+*.iml
+*.aab
+
+# macOS
+.DS_Store

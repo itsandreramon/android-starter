@@ -1,0 +1,79 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace "app.example"
+    compileSdk buildConfig.compileSdk
+
+    defaultConfig {
+        minSdk buildConfig.minSdk
+        targetSdk buildConfig.targetSdk
+
+        versionName "0.1.0"
+        versionCode 1
+
+        applicationId "app.example"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+
+            versionNameSuffix "-dev"
+            applicationIdSuffix ".debug"
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion "1.3.0"
+    }
+}
+
+dependencies {
+    implementation project(':core')
+    implementation project(':ui')
+
+    coreLibraryDesugaring libs.android.desugar
+
+    implementation libs.google.hilt.android
+    kapt libs.google.hilt.compiler
+
+    implementation libs.androidx.activity.compose
+    implementation libs.androidx.navigation.compose
+
+    implementation libs.compose.ui.ui
+    implementation libs.compose.ui.tooling
+    implementation libs.compose.material.material
+    implementation libs.compose.material.icons
+
+    implementation libs.airbnb.mavericks.compose
+    implementation libs.google.accompanist.insets
+
+    api libs.square.retrofit.lib
+    api libs.square.okhttp.logging
+
+    implementation libs.square.logcat
+
+    debugImplementation libs.square.leakCanary
+}
