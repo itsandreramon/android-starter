@@ -1,8 +1,8 @@
 <resources>
 
-    <style name="Theme.Rulona.Base" parent="android:Theme.Material.NoActionBar" />
+    <style name="Theme.App.Base" parent="android:Theme.Material.NoActionBar" />
 
-    <style name="Theme.Rulona" parent="Theme.Rulona.Base">
+    <style name="Theme.App" parent="Theme.App.Base">
         <item name="android:statusBarColor">#00000000</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>

@@ -14,7 +14,7 @@ android {
         versionName "0.1.0"
         versionCode 1
 
-        applicationId "de.thb.rulona"
+        applicationId "app.example"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

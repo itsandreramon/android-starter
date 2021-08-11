@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Rulona" parent="Theme.Rulona.Base">
+    <style name="Theme.App" parent="Theme.App.Base">
         <item name="android:statusBarColor">#00000000</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
