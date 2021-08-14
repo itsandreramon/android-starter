@@ -4,9 +4,9 @@ import app.example.core.data.type.Result
 import app.example.core.domain.ExampleResponse
 import app.example.core.util.CoroutinesDispatcherProvider
 import kotlinx.coroutines.withContext
+import retrofit2.HttpException
 import retrofit2.http.GET
 import retrofit2.http.Path
-import java.io.IOException
 
 interface ExampleService {
 
@@ -33,7 +33,7 @@ class ExampleRemoteDataSourceImpl(
         return withContext(dispatcherProvider.io()) {
             try {
                 Result.Success(exampleService.getById(id))
-            } catch (e: IOException) {
+            } catch (e: HttpException) {
                 Result.Error(e)
             }
         }
@@ -43,7 +43,7 @@ class ExampleRemoteDataSourceImpl(
         return withContext(dispatcherProvider.io()) {
             try {
                 Result.Success(exampleService.getAll())
-            } catch (e: IOException) {
+            } catch (e: HttpException) {
                 Result.Error(e)
             }
         }
