@@ -44,8 +44,8 @@ dependencies {
     implementation libs.square.retrofit.moshi
     implementation libs.square.okhttp.logging
 
-    implementation libs.dropbox.store
-    implementation libs.slack.eithernet
+    // implementation libs.dropbox.store
+    // implementation libs.slack.eithernet
 
     implementation libs.timber
 

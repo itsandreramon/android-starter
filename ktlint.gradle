@@ -3,7 +3,11 @@ configurations {
 }
 
 dependencies {
-    ktlint libs.pinterest.ktlint
+    ktlint (libs.pinterest.ktlint) {
+        attributes {
+            attribute(Bundling.BUNDLING_ATTRIBUTE, getObjects().named(Bundling, Bundling.EXTERNAL))
+        }
+    }
 }
 
 task ktlint(type: JavaExec, group: "verification") {

@@ -2,9 +2,9 @@ package app.example.core.data.sources.places
 
 import app.example.core.data.type.Lce
 import app.example.core.domain.ExampleEntity
-import app.example.core.util.ExampleEntityUtils.toEntity
 import app.example.core.util.fetchAndCacheMany
 import app.example.core.util.fetchAndCacheSingle
+import app.example.core.util.toEntity
 import kotlinx.coroutines.flow.Flow
 
 interface ExampleRepository {
