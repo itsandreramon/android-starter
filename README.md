@@ -10,6 +10,10 @@
 | Caching | [Room](https://developer.android.com/jetpack/androidx/releases/room)|
 | Networking | [Retrofit](https://github.com/square/retrofit)|
 
+## Information
+
+This project initially used [dropbox/store](https://github.com/dropbox/Store) for caching functionality, but because of some problems it has been removed. It is planned to be added again at a later stage and has been replaced by APIs found in [RepositoryUtils.kt](https://github.com/itsandreramon/android-starter/blob/master/core/src/main/java/app/example/core/util/RepositoryUtils.kt).
+
 ## Instructions
 
 This project uses Jetpack Compose and should be opened using Android Studio
