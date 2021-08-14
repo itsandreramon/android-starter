@@ -1,64 +1,24 @@
 name: Build
+
 on:
   push:
     branches:
       - master
-  pull_request:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          ref: master
 
-      - name: Set up JDK 11
+      - name: Set up JDK 16
         uses: actions/setup-java@v1
         with:
-          java-version: 11
-
-      - name: Decrypt secrets
-        run: ./scripts/decrypt_secrets.sh
-        env:
-          ENCRYPT_KEY: ${{ secrets.ENCRYPT_KEY }}
-
-      - name: Create keystore.properties
-        run: |
-          {
-            echo "debugKeyPassword=$DEBUG_KEY_PASSWORD"
-            echo "debugStorePassword=$DEBUG_STORE_PASSWORD"
-          } >keystore.properties
-        env:
-          DEBUG_KEY_PASSWORD: ${{ secrets.DEBUG_KEY_PASSWORD }}
-          DEBUG_STORE_PASSWORD: ${{ secrets.DEBUG_STORE_PASSWORD }}
-
-      - name: Create local.properties
-        run: |
-          {
-            echo "MAPS_API_KEY=$MAPS_API_KEY"
-            echo "MAPS_SERVICES_API_KEY=$MAPS_SERVICES_API_KEY"
-          } >local.properties
-        env:
-          MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
-          MAPS_SERVICES_API_KEY: ${{ secrets.MAPS_SERVICES_API_KEY }}
+          java-version: 16
 
       - name: Build project
         run: ./gradlew assembleDebug --stacktrace --scan
 
       - name: Run lint
-        run: ./gradlew app:lintDebug
-
-      - name: Run unit tests
-        run: ./gradlew test
-
-      #      - name: Run integration tests
-      #        uses: reactivecircus/android-emulator-runner@v2
-      #        with:
-      #          api-level: 29
-      #          script: ./gradlew connectedCheck
-
-      - name: Build APK
-        run: ./gradlew bundleDebug
+        run: ./gradlew app:lintDebug ktlintFormat
