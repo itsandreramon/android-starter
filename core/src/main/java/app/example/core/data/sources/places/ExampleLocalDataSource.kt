@@ -27,13 +27,14 @@ interface ExampleRoomDao {
     fun getAll(): Flow<List<ExampleEntity>>
 
     @Query("SELECT * FROM examples WHERE id = :id")
-    fun getById(id: String): Flow<ExampleEntity>
+    fun getById(id: Long): Flow<ExampleEntity>
 }
 
 interface ExampleLocalDataSource {
     suspend fun insert(places: List<ExampleEntity>)
+    suspend fun insert(places: ExampleEntity)
     fun getAll(): Flow<Lce<List<ExampleEntity>>>
-    fun getById(id: String): Flow<Lce<ExampleEntity>>
+    fun getById(id: Long): Flow<Lce<ExampleEntity>>
 }
 
 class ExampleLocalDataSourceImpl(
@@ -50,6 +51,10 @@ class ExampleLocalDataSourceImpl(
         }
     }
 
+    override suspend fun insert(places: ExampleEntity) {
+        insert(listOf(places))
+    }
+
     override fun getAll() = flow<Lce<List<ExampleEntity>>> {
         exampleRoomDao.getAll()
             .flowOn(dispatcherProvider.database())
@@ -58,7 +63,7 @@ class ExampleLocalDataSourceImpl(
             .collect { emit(Lce.Content(it)) }
     }
 
-    override fun getById(id: String) = flow<Lce<ExampleEntity>> {
+    override fun getById(id: Long) = flow<Lce<ExampleEntity>> {
         exampleRoomDao.getById(id)
             .flowOn(dispatcherProvider.database())
             .onStart { emit(Lce.Loading()) }

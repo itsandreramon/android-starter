@@ -15,13 +15,13 @@ interface ExampleService {
 
     @GET("/examples/{id}")
     suspend fun getById(
-        @Path("id") id: Int
+        @Path("id") id: Long
     ): ExampleResponse
 }
 
 interface ExampleRemoteDataSource {
     suspend fun getAll(): Result<List<ExampleResponse>>
-    suspend fun getById(id: Int): Result<ExampleResponse>
+    suspend fun getById(id: Long): Result<ExampleResponse>
 }
 
 class ExampleRemoteDataSourceImpl(
@@ -29,7 +29,7 @@ class ExampleRemoteDataSourceImpl(
     private val exampleService: ExampleService,
 ) : ExampleRemoteDataSource {
 
-    override suspend fun getById(id: Int): Result<ExampleResponse> {
+    override suspend fun getById(id: Long): Result<ExampleResponse> {
         return withContext(dispatcherProvider.io()) {
             try {
                 Result.Success(exampleService.getById(id))

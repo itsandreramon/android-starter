@@ -48,4 +48,6 @@ dependencies {
 
     implementation libs.airbnb.mavericks.compose
     implementation libs.google.accompanist.insets
+
+    implementation libs.timber
 }
