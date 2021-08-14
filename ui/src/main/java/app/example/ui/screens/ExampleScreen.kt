@@ -37,7 +37,7 @@ class ExampleViewModel(
 
     init {
         viewModelScope.launch {
-            placesRepository.insert(ExampleEntity(name = "Max Mustermann"))
+            placesRepository.insert(ExampleEntity(name = "Example"))
         }
 
         placesRepository.getAll()
