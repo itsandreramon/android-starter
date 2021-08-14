@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.io.IOException
 
 fun <T, R> fetchAndCacheMany(
     fetch: suspend () -> Result<List<R>>,
@@ -51,14 +50,10 @@ private fun <T, R : Any> ProducerScope<Lce<T>>.sendFetchedAsync(
     transformer: (R) -> T,
 ) {
     launch {
-        val fetchedResult = try {
-            fetch()
-        } catch (e: IOException) {
-            Result.Error(e)
-        }
+        val result = fetch()
 
-        if (fetchedResult is Result.Success) {
-            cache(transformer(fetchedResult.data))
+        if (result is Result.Success) {
+            cache(transformer(result.data))
         }
     }
 }
