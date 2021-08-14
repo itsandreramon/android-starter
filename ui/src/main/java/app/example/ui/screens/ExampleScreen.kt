@@ -18,6 +18,7 @@ import com.airbnb.mvrx.MavericksState
 import com.airbnb.mvrx.MavericksViewModel
 import com.airbnb.mvrx.compose.collectAsState
 import com.airbnb.mvrx.compose.mavericksViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -41,6 +42,7 @@ class ExampleViewModel(
         }
 
         placesRepository.getAll()
+            .onEach { delay(2000) }
             .onEach { setState { copy(examples = it) } }
             .launchIn(viewModelScope)
     }
