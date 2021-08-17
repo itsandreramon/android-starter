@@ -13,13 +13,11 @@ fun <T, R> fetchAndCacheMany(
     cache: suspend (List<T>) -> Unit,
     transformer: (R) -> T,
     getCache: () -> Flow<Lce<List<T>>>,
-): Flow<Lce<List<T>>> {
-    return channelFlow {
-        sendCachedAsync(getCache)
-        sendFetchedAsync(fetch, cache, transformer = { res ->
-            res.map { transformer(it) }
-        })
-    }
+) = channelFlow {
+    sendCachedAsync(getCache)
+    sendFetchedAsync(fetch, cache, transformer = { res ->
+        res.map { transformer(it) }
+    })
 }
 
 fun <T, R : Any> fetchAndCacheSingle(
@@ -27,20 +25,16 @@ fun <T, R : Any> fetchAndCacheSingle(
     cache: suspend (T) -> Unit,
     transformer: (R) -> T,
     getCache: () -> Flow<Lce<T>>,
-): Flow<Lce<T>> {
-    return channelFlow {
-        sendCachedAsync(getCache)
-        sendFetchedAsync(fetch, cache, transformer)
-    }
+) = channelFlow {
+    sendCachedAsync(getCache)
+    sendFetchedAsync(fetch, cache, transformer)
 }
 
 private fun <T> ProducerScope<Lce<T>>.sendCachedAsync(
     getCache: () -> Flow<Lce<T>>
-) {
-    launch {
-        getCache().collect {
-            send(it)
-        }
+) = launch {
+    getCache().collect {
+        send(it)
     }
 }
 
@@ -48,12 +42,10 @@ private fun <T, R : Any> ProducerScope<Lce<T>>.sendFetchedAsync(
     fetch: suspend () -> Result<R>,
     cache: suspend (T) -> Unit,
     transformer: (R) -> T,
-) {
-    launch {
-        val result = fetch()
+) = launch {
+    val result = fetch()
 
-        if (result is Result.Success) {
-            cache(transformer(result.data))
-        }
+    if (result is Result.Success) {
+        cache(transformer(result.data))
     }
 }
