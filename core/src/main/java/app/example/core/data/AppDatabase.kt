@@ -2,7 +2,7 @@ package app.example.core.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import app.example.core.data.sources.places.ExampleRoomDao
+import app.example.core.data.sources.example.ExampleRoomDao
 import app.example.core.domain.ExampleEntity
 
 @Database(

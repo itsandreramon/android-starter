@@ -1,7 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'com.google.secrets_gradle_plugin' version '0.6'
+    id 'dagger.hilt.android.plugin'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -50,8 +52,8 @@ dependencies {
     implementation project(':core')
     implementation project(':ui')
 
-    implementation libs.koin.core
-    implementation libs.koin.android
+    implementation libs.google.hilt.android
+    kapt libs.google.hilt.compiler
 
     implementation libs.androidx.activity.compose
     implementation libs.androidx.navigation.compose
@@ -63,6 +65,10 @@ dependencies {
 
     implementation libs.airbnb.mavericks.compose
     implementation libs.google.accompanist.insets
+
+    api libs.square.retrofit.lib
+    api libs.square.retrofit.moshi
+    api libs.square.okhttp.logging
 
     implementation libs.timber
 

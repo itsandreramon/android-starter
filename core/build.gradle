@@ -1,9 +1,10 @@
 plugins {
     id 'com.android.library'
-    id 'com.google.devtools.ksp' version '1.5.21-1.0.0-beta07'
     id 'com.google.secrets_gradle_plugin' version '0.6'
+    id 'dagger.hilt.android.plugin'
     id 'kotlin-android'
     id 'kotlin-parcelize'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -12,6 +13,12 @@ android {
     defaultConfig {
         minSdk buildConfig.minSdk
         targetSdk buildConfig.targetSdk
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     compileOptions {
@@ -21,18 +28,15 @@ android {
     }
 }
 
-ksp {
-    arg("room.schemaLocation", "$projectDir/schemas".toString())
-}
-
 dependencies {
     coreLibraryDesugaring libs.android.desugar
 
     implementation libs.androidx.core
 
-    implementation libs.koin.core
+    implementation libs.google.hilt.android
+    kapt libs.google.hilt.compiler
 
-    ksp libs.androidx.room.compiler
+    kapt libs.androidx.room.compiler
     implementation libs.androidx.room.runtime
     implementation libs.androidx.room.ktx
 

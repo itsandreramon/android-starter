@@ -11,6 +11,7 @@ androidx_lifecycle = '2.4.0-alpha03'
 androidx_room = '2.4.0-alpha04'
 androidx_core = '1.6.0'
 androidx_datastore = '1.0.0'
+google_hilt = "2.38.1"
 google_accompanist = '0.16.1'
 google_play_location = '18.0.0'
 google_play_ktx = '1.8.1'
@@ -74,6 +75,8 @@ square-okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", v
 cashapp-turbine = { module = "app.cash.turbine:turbine", version.ref = "cashapp_turbine" }
 cashapp-exhaustive-gradlePlugin = { module = "app.cash.exhaustive:exhaustive-gradle", version.ref = "cashapp_exhaustive" }
 
+airbnb-mavericks-compose = { module = "com.airbnb.android:mavericks-compose", version.ref = "airbnb_mavericks" }
+
 google-play-ktx = { module = "com.google.android.play:core-ktx", version.ref = "google_play_ktx" }
 
 google-maps-lib = { module = "com.google.android.libraries.maps:maps", version.ref = "google_maps_lib" }
@@ -85,7 +88,10 @@ google-accompanist-systemuicontroller = { module = "com.google.accompanist:accom
 google-accompanist-pager-lib = { module = "com.google.accompanist:accompanist-pager", version.ref = "google_accompanist" }
 google-accompanist-pager-indicators = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref = "google_accompanist" }
 
-airbnb-mavericks-compose = { module = "com.airbnb.android:mavericks-compose", version.ref = "airbnb_mavericks" }
+google-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "google_hilt" }
+google-hilt-gradlePlugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "google_hilt" }
+google-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "google_hilt" }
+
 dropbox-store = { module = "com.dropbox.mobile.store:store4", version.ref = "dropbox_store" }
 pinterest-ktlint = { module = "com.pinterest:ktlint", version.ref = "pinterest_ktlint" }
 slack-eithernet = { module = "com.slack.eithernet:eithernet", version.ref = "slack_eithernet" }

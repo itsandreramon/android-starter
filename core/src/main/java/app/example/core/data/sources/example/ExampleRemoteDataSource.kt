@@ -1,4 +1,4 @@
-package app.example.core.data.sources.places
+package app.example.core.data.sources.example
 
 import app.example.core.data.type.Result
 import app.example.core.domain.ExampleResponse
@@ -7,6 +7,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import retrofit2.http.GET
 import retrofit2.http.Path
+import javax.inject.Inject
 
 interface ExampleService {
 
@@ -24,7 +25,7 @@ interface ExampleRemoteDataSource {
     suspend fun getById(id: Long): Result<ExampleResponse>
 }
 
-class ExampleRemoteDataSourceImpl(
+class ExampleRemoteDataSourceImpl @Inject constructor(
     private val dispatcherProvider: CoroutinesDispatcherProvider,
     private val exampleService: ExampleService,
 ) : ExampleRemoteDataSource {
