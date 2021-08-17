@@ -51,4 +51,9 @@ dependencies {
     implementation libs.google.accompanist.insets
 
     implementation libs.timber
+
+    testImplementation libs.junit
+    testImplementation libs.mockk
+    testImplementation libs.kotest.assertions
+    testImplementation libs.airbnb.mavericks.testing
 }

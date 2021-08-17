@@ -23,7 +23,8 @@ square_retrofit = '2.9.0'
 square_okhttp = '4.9.1'
 cashapp_turbine = '0.5.2'
 cashapp_exhaustive = '0.2.0'
-airbnb_mavericks = '2.1.0-alpha02'
+airbnb_mavericks_compose = '2.1.0-alpha02'
+airbnb_mavericks_lib = '2.3.0'
 dropbox_store = '4.0.2-KT15'
 pinterest_ktlint = '0.42.1'
 slack_eithernet = '1.0.0-rc01'
@@ -75,7 +76,8 @@ square-okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", v
 cashapp-turbine = { module = "app.cash.turbine:turbine", version.ref = "cashapp_turbine" }
 cashapp-exhaustive-gradlePlugin = { module = "app.cash.exhaustive:exhaustive-gradle", version.ref = "cashapp_exhaustive" }
 
-airbnb-mavericks-compose = { module = "com.airbnb.android:mavericks-compose", version.ref = "airbnb_mavericks" }
+airbnb-mavericks-compose = { module = "com.airbnb.android:mavericks-compose", version.ref = "airbnb_mavericks_compose" }
+airbnb-mavericks-testing = { module = "com.airbnb.android:mavericks-testing", version.ref = "airbnb_mavericks_lib" }
 
 google-play-ktx = { module = "com.google.android.play:core-ktx", version.ref = "google_play_ktx" }
 
