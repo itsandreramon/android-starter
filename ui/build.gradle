@@ -1,7 +1,9 @@
 plugins {
     id 'com.android.library'
     id 'com.google.secrets_gradle_plugin' version '0.6'
+    id 'dagger.hilt.android.plugin'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -32,9 +34,8 @@ dependencies {
 
     coreLibraryDesugaring libs.android.desugar
 
-    implementation libs.koin.core
-    implementation libs.koin.android
-    implementation libs.koin.compose
+    implementation libs.google.hilt.android
+    kapt libs.google.hilt.compiler
 
     implementation libs.androidx.activity.compose
     api libs.androidx.navigation.compose

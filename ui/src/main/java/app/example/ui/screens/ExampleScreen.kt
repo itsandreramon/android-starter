@@ -8,44 +8,54 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import app.example.core.data.sources.places.ExampleRepository
+import app.example.core.data.sources.example.ExampleRepository
 import app.example.core.data.type.Lce
 import app.example.core.domain.ExampleEntity
 import app.example.ui.components.ExampleAppBar
 import app.example.ui.theme.padding_medium
+import app.example.ui.util.AssistedViewModelFactory
+import app.example.ui.util.hiltMavericksViewModelFactory
 import app.example.ui.util.trackRecompositions
 import com.airbnb.mvrx.MavericksState
 import com.airbnb.mvrx.MavericksViewModel
+import com.airbnb.mvrx.MavericksViewModelFactory
 import com.airbnb.mvrx.compose.collectAsState
 import com.airbnb.mvrx.compose.mavericksViewModel
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
 data class ExampleState(
     val examples: Lce<List<ExampleEntity>> = Lce.Loading()
 ) : MavericksState
 
-class ExampleViewModel(
-    initialState: ExampleState,
-) : MavericksViewModel<ExampleState>(initialState), KoinComponent {
-
-    // TODO use constructor injection
-    private val placesRepository by inject<ExampleRepository>()
+class ExampleViewModel @AssistedInject constructor(
+    @Assisted initialState: ExampleState,
+    private val exampleRepository: ExampleRepository
+) : MavericksViewModel<ExampleState>(initialState) {
 
     init {
         viewModelScope.launch {
-            placesRepository.insert(ExampleEntity(name = "Example"))
+            exampleRepository.insert(ExampleEntity(name = "Example"))
         }
 
-        placesRepository.getAll()
+        exampleRepository.getAll()
             .onEach { delay(2000) }
             .onEach { setState { copy(examples = it) } }
             .launchIn(viewModelScope)
     }
+
+    @AssistedFactory
+    interface Factory : AssistedViewModelFactory<ExampleViewModel, ExampleState> {
+        override fun create(state: ExampleState): ExampleViewModel
+    }
+
+    companion object : MavericksViewModelFactory<ExampleViewModel, ExampleState>
+    by hiltMavericksViewModelFactory()
 }
 
 @Composable

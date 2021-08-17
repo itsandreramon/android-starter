@@ -1,47 +1,30 @@
 package app.example.core.di
 
 import app.example.core.data.AppDatabase
-import app.example.core.data.sources.places.ExampleLocalDataSource
-import app.example.core.data.sources.places.ExampleLocalDataSourceImpl
-import app.example.core.data.sources.places.ExampleRemoteDataSource
-import app.example.core.data.sources.places.ExampleRemoteDataSourceImpl
-import app.example.core.data.sources.places.ExampleRepository
-import app.example.core.data.sources.places.ExampleRepositoryImpl
-import app.example.core.data.sources.places.ExampleService
-import app.example.core.util.CoroutinesDispatcherProvider
-import kotlinx.coroutines.CoroutineScope
-import org.koin.dsl.module
+import app.example.core.data.sources.example.ExampleRoomDao
+import app.example.core.data.sources.example.ExampleService
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import javax.inject.Singleton
 
-val exampleModule = module {
+@Module
+@InstallIn(SingletonComponent::class)
+object ExampleModule {
 
+    @Provides
+    @Singleton
     fun provideExampleService(retrofit: Retrofit.Builder): ExampleService {
         return retrofit
             .build()
             .create(ExampleService::class.java)
     }
 
-    fun provideExampleRemoteDataSource(
-        coroutinesDispatcherProvider: CoroutinesDispatcherProvider,
-        service: ExampleService,
-    ): ExampleRemoteDataSource {
-        return ExampleRemoteDataSourceImpl(coroutinesDispatcherProvider, service)
+    @Provides
+    @Singleton
+    fun provideExampleRoomDao(appDatabase: AppDatabase): ExampleRoomDao {
+        return appDatabase.exampleDao()
     }
-
-    fun provideExampleLocalDataSource(
-        appDatabase: AppDatabase,
-        dispatcherProvider: CoroutinesDispatcherProvider,
-        applicationScope: CoroutineScope,
-    ): ExampleLocalDataSource {
-        return ExampleLocalDataSourceImpl(
-            exampleRoomDao = appDatabase.exampleDao(),
-            dispatcherProvider = dispatcherProvider,
-            applicationScope = applicationScope,
-        )
-    }
-
-    single { provideExampleService(get()) }
-    single { provideExampleRemoteDataSource(get(), get()) }
-    single { provideExampleLocalDataSource(get(), get(), get()) }
-    single<ExampleRepository> { ExampleRepositoryImpl(get(), get()) }
 }

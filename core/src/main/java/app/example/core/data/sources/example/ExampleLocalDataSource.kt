@@ -1,4 +1,4 @@
-package app.example.core.data.sources.places
+package app.example.core.data.sources.example
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -16,12 +16,13 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 @Dao
 interface ExampleRoomDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(places: List<ExampleEntity>)
+    suspend fun insert(examples: List<ExampleEntity>)
 
     @Query("SELECT * FROM examples")
     fun getAll(): Flow<List<ExampleEntity>>
@@ -31,28 +32,28 @@ interface ExampleRoomDao {
 }
 
 interface ExampleLocalDataSource {
-    suspend fun insert(places: List<ExampleEntity>)
-    suspend fun insert(places: ExampleEntity)
+    suspend fun insert(examples: List<ExampleEntity>)
+    suspend fun insert(example: ExampleEntity)
     fun getAll(): Flow<Lce<List<ExampleEntity>>>
     fun getById(id: Long): Flow<Lce<ExampleEntity>>
 }
 
-class ExampleLocalDataSourceImpl(
+class ExampleLocalDataSourceImpl @Inject constructor(
     private val applicationScope: CoroutineScope,
     private val exampleRoomDao: ExampleRoomDao,
     private val dispatcherProvider: CoroutinesDispatcherProvider,
 ) : ExampleLocalDataSource {
 
-    override suspend fun insert(places: List<ExampleEntity>) {
+    override suspend fun insert(examples: List<ExampleEntity>) {
         withContext(dispatcherProvider.database()) {
             applicationScope.launch {
-                exampleRoomDao.insert(places)
+                exampleRoomDao.insert(examples)
             }.join()
         }
     }
 
-    override suspend fun insert(places: ExampleEntity) {
-        insert(listOf(places))
+    override suspend fun insert(example: ExampleEntity) {
+        insert(listOf(example))
     }
 
     override fun getAll() = flow<Lce<List<ExampleEntity>>> {

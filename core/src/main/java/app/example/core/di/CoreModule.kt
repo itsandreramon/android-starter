@@ -5,17 +5,32 @@ import androidx.room.Room
 import app.example.core.data.AppDatabase
 import app.example.core.util.CoroutinesDispatcherProvider
 import app.example.core.util.DefaultDispatcherProvider
-import org.koin.dsl.module
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
-val coreModule = module {
+@Module
+@InstallIn(SingletonComponent::class)
+object CoreModule {
 
-    fun provideAppDatabase(applicationContext: Context): AppDatabase {
+    @Provides
+    @Singleton
+    fun provideAppDatabase(
+        @ApplicationContext applicationContext: Context
+    ): AppDatabase {
         return Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java, "db"
         ).build()
     }
 
-    single { provideAppDatabase(get()) }
-    single<CoroutinesDispatcherProvider> { DefaultDispatcherProvider() }
+    @Provides
+    @Singleton
+    fun provideDispatcherProvider(): CoroutinesDispatcherProvider {
+        return DefaultDispatcherProvider()
+    }
 }
+
