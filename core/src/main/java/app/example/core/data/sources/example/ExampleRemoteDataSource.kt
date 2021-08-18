@@ -3,6 +3,7 @@ package app.example.core.data.sources.example
 import app.example.core.data.type.Result
 import app.example.core.domain.ExampleResponse
 import app.example.core.util.CoroutinesDispatcherProvider
+import app.example.core.util.trackInitializations
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import retrofit2.http.GET
@@ -29,6 +30,10 @@ class ExampleRemoteDataSourceImpl @Inject constructor(
     private val dispatcherProvider: CoroutinesDispatcherProvider,
     private val exampleService: ExampleService,
 ) : ExampleRemoteDataSource {
+
+    init {
+        trackInitializations(this)
+    }
 
     override suspend fun getById(id: Long): Result<ExampleResponse> {
         return withContext(dispatcherProvider.io()) {

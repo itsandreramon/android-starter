@@ -7,6 +7,7 @@ import androidx.room.Query
 import app.example.core.data.type.Lce
 import app.example.core.domain.ExampleEntity
 import app.example.core.util.CoroutinesDispatcherProvider
+import app.example.core.util.trackInitializations
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -43,6 +44,10 @@ class ExampleLocalDataSourceImpl @Inject constructor(
     private val exampleRoomDao: ExampleRoomDao,
     private val dispatcherProvider: CoroutinesDispatcherProvider,
 ) : ExampleLocalDataSource {
+
+    init {
+        trackInitializations(this)
+    }
 
     override suspend fun insert(examples: List<ExampleEntity>) {
         withContext(dispatcherProvider.database()) {

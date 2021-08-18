@@ -5,6 +5,7 @@ import app.example.core.domain.ExampleEntity
 import app.example.core.util.fetchAndCacheMany
 import app.example.core.util.fetchAndCacheSingle
 import app.example.core.util.toEntity
+import app.example.core.util.trackInitializations
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -18,6 +19,10 @@ class ExampleRepositoryImpl @Inject constructor(
     private val exampleLocalDataSource: ExampleLocalDataSource,
     private val exampleRemoteDataSource: ExampleRemoteDataSource,
 ) : ExampleRepository {
+
+    init {
+        trackInitializations(this)
+    }
 
     override suspend fun insert(example: ExampleEntity) {
         exampleLocalDataSource.insert(listOf(example))

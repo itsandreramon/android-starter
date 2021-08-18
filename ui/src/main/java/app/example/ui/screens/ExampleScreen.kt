@@ -11,11 +11,12 @@ import androidx.compose.ui.Modifier
 import app.example.core.data.sources.example.ExampleRepository
 import app.example.core.data.type.Lce
 import app.example.core.domain.ExampleEntity
+import app.example.core.util.trackInitializations
+import app.example.core.util.trackRecompositions
 import app.example.ui.components.ExampleAppBar
 import app.example.ui.theme.padding_medium
 import app.example.ui.util.AssistedViewModelFactory
 import app.example.ui.util.hiltMavericksViewModelFactory
-import app.example.ui.util.trackRecompositions
 import com.airbnb.mvrx.MavericksState
 import com.airbnb.mvrx.MavericksViewModel
 import com.airbnb.mvrx.MavericksViewModelFactory
@@ -39,6 +40,8 @@ class ExampleViewModel @AssistedInject constructor(
 ) : MavericksViewModel<ExampleState>(initialState) {
 
     init {
+        trackInitializations(this)
+
         viewModelScope.launch {
             exampleRepository.insert(ExampleEntity(name = "Example"))
         }
