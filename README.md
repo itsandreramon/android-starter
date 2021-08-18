@@ -5,9 +5,9 @@
 | What           | How                        |
 |----------------|----------------------------|
 | User Interface | [Compose](https://developer.android.com/jetpack/compose)|
-| Dependency Injection | [Koin](https://github.com/InsertKoinIO/koin)|
+| Dependency Injection | [Hilt](https://developer.android.com/training/dependency-injection/hilt-android)|
 | State Management | [Mavericks](https://github.com/airbnb/mavericks)|
-| Caching | [Room](https://developer.android.com/jetpack/androidx/releases/room)|
+| Caching | [Room](https://developer.android.com/training/data-storage/room/)|
 | Networking | [Retrofit](https://github.com/square/retrofit)|
 
 ## Information
