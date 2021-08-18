@@ -1,4 +1,4 @@
-package app.example.core.di
+package app.example.core.hilt
 
 import app.example.core.data.AppDatabase
 import app.example.core.data.sources.example.ExampleRoomDao

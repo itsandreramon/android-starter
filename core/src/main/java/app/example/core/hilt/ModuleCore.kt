@@ -1,4 +1,4 @@
-package app.example.core.di
+package app.example.core.hilt
 
 import android.content.Context
 import androidx.room.Room

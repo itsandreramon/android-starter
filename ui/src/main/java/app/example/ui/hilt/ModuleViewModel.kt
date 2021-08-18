@@ -1,4 +1,4 @@
-package app.example.ui.di
+package app.example.ui.hilt
 
 import app.example.ui.screens.ExampleViewModel
 import app.example.ui.util.AssistedViewModelFactory
