@@ -12,7 +12,7 @@
 
 ## Information
 
-This project initially used [dropbox/store](https://github.com/dropbox/Store) for caching functionality, but because of some problems it has been removed. It is planned to be added again at a later stage and has been replaced by APIs found in [RepositoryUtils.kt](https://github.com/itsandreramon/android-starter/blob/master/app.example.core/src/main/java/app/app.example/app.example.core/app.example.core.util/RepositoryUtils.kt).
+This project initially used [dropbox/store](https://github.com/dropbox/Store) for caching functionality, but because of some problems it has been removed. It is planned to be added again at a later stage and has been replaced by APIs found in [RepositoryUtils.kt](https://github.com/itsandreramon/android-starter/blob/master/core/src/main/java/app/example/core/util/RepositoryUtils.kt).
 
 ## Instructions
 
