@@ -18,6 +18,9 @@ jobs:
         with:
           java-version: 11
 
+      - name: create local.properties
+        run: touch local.properties
+
       - name: Build project
         run: ./gradlew build --no-build-cache --stacktrace --scan
 
