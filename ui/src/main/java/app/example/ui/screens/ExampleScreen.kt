@@ -44,7 +44,7 @@ class ExampleViewModel @AssistedInject constructor(
         }
 
         exampleRepository.getAll()
-            .onEach { delay(2000) }
+            .onEach { delay(500) }
             .onEach { setState { copy(examples = it) } }
             .launchIn(viewModelScope)
     }

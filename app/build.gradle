@@ -16,7 +16,7 @@ android {
         versionName "0.1.0"
         versionCode 1
 
-        applicationId "app.example"
+        applicationId "app.app.example"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -32,6 +32,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    sourceSets {
+        test { java.srcDirs += "$projectDir/src/test" }
+        androidTest { java.srcDirs += "$projectDir/src/test" }
     }
 
     compileOptions {

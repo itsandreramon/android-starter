@@ -54,6 +54,8 @@ dependencies {
 
     testImplementation libs.junit
     testImplementation libs.mockk
+    testImplementation libs.cashapp.turbine
     testImplementation libs.kotest.assertions
+    testImplementation libs.kotlinx.coroutines.test
     testImplementation libs.airbnb.mavericks.testing
 }

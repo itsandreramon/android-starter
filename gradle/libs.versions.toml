@@ -21,7 +21,7 @@ google_secrets = '0.6.1'
 square_leakcanary = '2.7'
 square_retrofit = '2.9.0'
 square_okhttp = '4.9.1'
-cashapp_turbine = '0.5.2'
+cashapp_turbine = '0.6.0'
 cashapp_exhaustive = '0.2.0'
 airbnb_mavericks_compose = '2.1.0-alpha02'
 airbnb_mavericks_lib = '2.3.0'
@@ -57,6 +57,7 @@ kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", ve
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx_coroutines" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx_coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx_coroutines" }
 kotlinx-coroutines-play = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "kotlinx_coroutines" }
 
