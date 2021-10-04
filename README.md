@@ -1,4 +1,4 @@
-[![Build](https://github.com/itsandreramon/mux-rulona/actions/workflows/build.yml/badge.svg)](https://github.com/itsandreramon/android-starter/actions/workflows/build.yml)
+[![Build](https://github.com/itsandreramon/android-starter/actions/workflows/build.yml/badge.svg)](https://github.com/itsandreramon/android-starter/actions/workflows/build.yml)
 
 ## Stack
 
