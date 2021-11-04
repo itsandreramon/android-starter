@@ -9,6 +9,7 @@
 | State Management | [Mavericks](https://github.com/airbnb/mavericks)|
 | Caching | [Room](https://developer.android.com/training/data-storage/room/)|
 | Networking | [Retrofit](https://github.com/square/retrofit)|
+| Code Coverage | [Kover](https://github.com/Kotlin/kotlinx-kover)|
 
 ## Information
 
