@@ -1,3 +1,5 @@
+import static de.fayard.refreshVersions.core.Versions.versionFor
+
 buildscript {
     ext {
         buildConfig = [
@@ -15,6 +17,7 @@ buildscript {
     dependencies {
         classpath libs.android.gradlePlugin
         classpath libs.kotlin.gradlePlugin
+        classpath libs.kotlinx.kover
         classpath libs.google.hilt.gradlePlugin
     }
 }
@@ -28,6 +31,7 @@ allprojects {
 
 subprojects {
     apply from: rootProject.file('ktlint.gradle')
+    apply from: rootProject.file('kover.gradle')
 
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
         kotlinOptions {
@@ -47,7 +51,7 @@ subprojects {
             def module = details.requested.module.name
 
             if (group == 'org.jetbrains.kotlin' && module.startsWith('kotlin-stdlib')) {
-                details.useVersion libs.versions.kotlin.get()
+                details.useVersion versionFor("version.kotlin")
             }
         }
     }
@@ -56,3 +60,5 @@ subprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+task kover(group: 'verification', dependsOn: ['app:testDebugUnitTest', 'koverCollectReports'])

@@ -26,3 +26,6 @@ jobs:
 
       - name: Run lint
         run: ./gradlew app:lintDebug ktlint
+
+      - name: Run tests
+        run: ./gradlew testDebugUnitTest --stacktrace

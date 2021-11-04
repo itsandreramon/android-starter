@@ -1,0 +1,26 @@
+apply plugin: 'kover'
+
+kover {
+    enabled = true
+}
+
+tasks.withType(Test) {
+    kover {
+        enabled = true
+        includes = ['app\\.example\\..*']
+    }
+}
+
+tasks.koverHtmlReport {
+    enabled = true
+    htmlReportDir.set(layout.buildDirectory.dir("my-reports/html-result"))
+}
+
+tasks.koverXmlReport {
+    enabled = true
+    xmlReportFile.set(layout.buildDirectory.file("my-reports/result.xml"))
+}
+
+tasks.koverCollectReports {
+    into { "$rootDir/build/coverage" }
+}
