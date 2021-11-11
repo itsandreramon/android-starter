@@ -27,5 +27,9 @@ jobs:
       - name: Run lint
         run: ./gradlew app:lintDebug ktlint
 
+      - uses: JetBrains/qodana-action@v3
+        with:
+          linter: qodana-jvm-community
+
       - name: Run tests
         run: ./gradlew testDebugUnitTest --stacktrace
