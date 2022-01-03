@@ -19,14 +19,6 @@ import org.junit.jupiter.api.extension.RegisterExtension
 
 class ExampleViewModelTest {
 
-    @JvmField
-    @RegisterExtension
-    val mavericksTestExtension = MvRxTestExtension()
-
-    @JvmField
-    @RegisterExtension
-    val coroutineTestExtension = CoroutineTestExtension()
-
     private var exampleViewModel: ExampleViewModel? = null
     private val exampleRepository: ExampleRepository = mockk()
 
@@ -38,9 +30,7 @@ class ExampleViewModelTest {
 
         every {
             exampleRepository.getAll()
-        } returns flowOf(
-            Lce.Content(listOf())
-        )
+        } returns flowOf(Lce.Content(listOf()))
 
         exampleViewModel = ExampleViewModel(
             initialState = ExampleState(),
@@ -59,5 +49,12 @@ class ExampleViewModelTest {
             awaitItem().examples shouldBeEqualToComparingFields Lce.Loading()
             awaitItem().examples shouldBeEqualToComparingFields Lce.Content(listOf())
         }
+    }
+
+    companion object {
+
+        @JvmField
+        @RegisterExtension
+        val mavericksTestExtension = MvRxTestExtension()
     }
 }
