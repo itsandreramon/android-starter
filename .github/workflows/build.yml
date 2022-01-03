@@ -15,7 +15,7 @@ jobs:
         with:
           java-version: 17
 
-      - name: create local.properties
+      - name: Create local.properties
         run: touch local.properties
 
       - name: Build project
