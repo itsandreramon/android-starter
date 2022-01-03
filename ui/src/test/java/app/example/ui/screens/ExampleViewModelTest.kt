@@ -3,7 +3,7 @@ package app.example.ui.screens
 import app.cash.turbine.test
 import app.example.core.data.sources.example.ExampleRepository
 import app.example.core.data.type.Lce
-import com.airbnb.mvrx.test.MvRxTestRule
+import app.example.ui.screens.mvrx.MvRxTestExtension
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields
 import io.mockk.Runs
 import io.mockk.coEvery
@@ -11,24 +11,26 @@ import io.mockk.every
 import io.mockk.just
 import io.mockk.mockk
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.runBlockingTest
-import org.junit.After
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
+import kotlinx.coroutines.test.runTest
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.RegisterExtension
 
 class ExampleViewModelTest {
 
-    @get:Rule
-    val mavericksTestRule = MvRxTestRule()
+    @JvmField
+    @RegisterExtension
+    val mavericksTestExtension = MvRxTestExtension()
 
-    @get:Rule
-    val coroutinesTestRule = CoroutineTestRule()
+    @JvmField
+    @RegisterExtension
+    val coroutineTestExtension = CoroutineTestExtension()
 
     private var exampleViewModel: ExampleViewModel? = null
     private val exampleRepository: ExampleRepository = mockk()
 
-    @Before
+    @BeforeEach
     fun setUp() {
         coEvery {
             exampleRepository.insert(any())
@@ -46,13 +48,13 @@ class ExampleViewModelTest {
         )
     }
 
-    @After
+    @AfterEach
     fun tearDown() {
         exampleViewModel = null
     }
 
     @Test
-    fun example_test() = coroutinesTestRule.testDispatcher.runBlockingTest {
+    fun example_test() = runTest {
         exampleViewModel!!.stateFlow.test {
             awaitItem().examples shouldBeEqualToComparingFields Lce.Loading()
             awaitItem().examples shouldBeEqualToComparingFields Lce.Content(listOf())

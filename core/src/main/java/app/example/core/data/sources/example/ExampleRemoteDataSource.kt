@@ -2,7 +2,7 @@ package app.example.core.data.sources.example
 
 import app.example.core.data.type.Result
 import app.example.core.domain.ExampleResponse
-import app.example.core.util.CoroutinesDispatcherProvider
+import app.example.core.util.CoroutineDispatcherProvider
 import app.example.core.util.trackInitializations
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
@@ -27,7 +27,7 @@ interface ExampleRemoteDataSource {
 }
 
 class ExampleRemoteDataSourceImpl @Inject constructor(
-    private val dispatcherProvider: CoroutinesDispatcherProvider,
+    private val dispatcherProvider: CoroutineDispatcherProvider,
     private val exampleService: ExampleService,
 ) : ExampleRemoteDataSource {
 

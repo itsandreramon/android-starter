@@ -5,14 +5,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asCoroutineDispatcher
 import java.util.concurrent.Executors
 
-interface CoroutinesDispatcherProvider {
+interface CoroutineDispatcherProvider {
     fun main(): CoroutineDispatcher
     fun computation(): CoroutineDispatcher
     fun io(): CoroutineDispatcher
     fun database(): CoroutineDispatcher
 }
 
-class DefaultDispatcherProvider : CoroutinesDispatcherProvider {
+class DefaultDispatcherProvider : CoroutineDispatcherProvider {
     override fun main() = Dispatchers.Main
     override fun computation() = Dispatchers.Default
     override fun io() = Dispatchers.IO
