@@ -17,5 +17,4 @@ This project initially used [dropbox/store](https://github.com/dropbox/Store) fo
 
 ## Instructions
 
-This project uses Jetpack Compose and should be opened using Android Studio
-2020.3.1 [Arctic Fox](https://developer.android.com/studio/) or newer.
+This project uses Jetpack Compose and should be opened using [Android Studio](https://developer.android.com/studio/) Arctic Fox or [IntelliJ IDEA](https://www.jetbrains.com/idea/) 2021.3
