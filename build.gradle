@@ -42,7 +42,9 @@ subprojects {
             freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
             freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.FlowPreview"
             freeCompilerArgs += "-Xopt-in=kotlin.time.ExperimentalTime"
-            jvmTarget = "11"
+
+            allWarningsAsErrors = true
+            jvmTarget = JavaVersion.VERSION_11
         }
     }
 
