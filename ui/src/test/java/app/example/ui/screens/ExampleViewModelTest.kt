@@ -3,8 +3,11 @@ package app.example.ui.screens
 import app.cash.turbine.test
 import app.example.core.data.sources.example.ExampleRepository
 import app.example.core.data.type.Lce
+import app.example.core.domain.ExampleEntity
 import app.example.ui.screens.mvrx.MvRxTestExtension
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.types.instanceOf
 import io.mockk.Runs
 import io.mockk.coEvery
 import io.mockk.every
@@ -46,8 +49,8 @@ class ExampleViewModelTest {
     @Test
     fun example_test() = runTest {
         exampleViewModel!!.stateFlow.test {
-            awaitItem().examples shouldBeEqualToComparingFields Lce.Loading()
-            awaitItem().examples shouldBeEqualToComparingFields Lce.Content(listOf())
+            awaitItem().examples shouldBe instanceOf<Lce.Loading<*>>()
+            awaitItem().examples shouldBe instanceOf<Lce.Content<*>>()
         }
     }
 
