@@ -3,7 +3,7 @@ package app.example.core.hilt
 import android.content.Context
 import androidx.room.Room
 import app.example.core.data.AppDatabase
-import app.example.core.util.CoroutinesDispatcherProvider
+import app.example.core.util.CoroutineDispatcherProvider
 import app.example.core.util.DefaultDispatcherProvider
 import dagger.Module
 import dagger.Provides
@@ -29,7 +29,7 @@ object ModuleCore {
 
     @Provides
     @Singleton
-    fun provideDispatcherProvider(): CoroutinesDispatcherProvider {
+    fun provideDispatcherProvider(): CoroutineDispatcherProvider {
         return DefaultDispatcherProvider()
     }
 }

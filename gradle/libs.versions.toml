@@ -28,11 +28,9 @@ kotlinx-coroutines-test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:_"
 kotlinx-coroutines-android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:_"
 kotlinx-coroutines-play = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:_"
 
-kotlinx-kover = "org.jetbrains.kotlinx:kover:_"
+kotlinx-kover-gradlePlugin = "org.jetbrains.kotlinx:kover:_"
 
 kotest-assertions = "io.kotest:kotest-assertions-core:_"
-
-mockk = "io.mockk:mockk:_"
 
 square-leakCanary = "com.squareup.leakcanary:leakcanary-android:_"
 square-retrofit-lib = "com.squareup.retrofit2:retrofit:_"
@@ -64,5 +62,9 @@ dropbox-store = "com.dropbox.mobile.store:store4:_"
 pinterest-ktlint = "com.pinterest:ktlint:_"
 slack-eithernet = "com.slack.eithernet:eithernet:_"
 
-junit = "junit:junit:_"
+junit4 = "junit:junit:_"
+
+junit5 = "org.junit.jupiter:junit-jupiter:_"
+
 timber = "com.jakewharton.timber:timber:_"
+mockk = "io.mockk:mockk:_"

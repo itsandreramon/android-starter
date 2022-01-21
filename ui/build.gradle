@@ -27,7 +27,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion versionFor("version.androidx.compose.ui")
+        kotlinCompilerExtensionVersion "1.1.0-rc02" // revert with rc03
     }
 }
 
@@ -54,7 +54,8 @@ dependencies {
 
     implementation libs.timber
 
-    testImplementation libs.junit
+    testImplementation libs.junit5
+
     testImplementation libs.mockk
     testImplementation libs.cashapp.turbine
     testImplementation libs.kotest.assertions

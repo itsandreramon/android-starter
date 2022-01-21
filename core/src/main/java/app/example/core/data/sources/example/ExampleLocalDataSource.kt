@@ -6,12 +6,11 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import app.example.core.data.type.Lce
 import app.example.core.domain.ExampleEntity
-import app.example.core.util.CoroutinesDispatcherProvider
+import app.example.core.util.CoroutineDispatcherProvider
 import app.example.core.util.trackInitializations
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onStart
@@ -42,7 +41,7 @@ interface ExampleLocalDataSource {
 class ExampleLocalDataSourceImpl @Inject constructor(
     private val applicationScope: CoroutineScope,
     private val exampleRoomDao: ExampleRoomDao,
-    private val dispatcherProvider: CoroutinesDispatcherProvider,
+    private val dispatcherProvider: CoroutineDispatcherProvider,
 ) : ExampleLocalDataSource {
 
     init {
