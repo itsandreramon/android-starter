@@ -1,6 +1,5 @@
 package app.example.ui.screens.mvrx;
 
-import com.airbnb.mvrx.InternalMavericksApi;
 import com.airbnb.mvrx.MavericksTestOverrides;
 import com.airbnb.mvrx.test.MvRxTestRule;
 

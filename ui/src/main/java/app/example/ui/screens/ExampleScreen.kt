@@ -31,12 +31,12 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 data class ExampleState(
-    val examples: Lce<List<ExampleEntity>> = Lce.Loading()
+    val examples: Lce<List<ExampleEntity>> = Lce.Loading(),
 ) : MavericksState
 
 class ExampleViewModel @AssistedInject constructor(
     @Assisted initialState: ExampleState,
-    private val exampleRepository: ExampleRepository
+    private val exampleRepository: ExampleRepository,
 ) : MavericksViewModel<ExampleState>(initialState) {
 
     init {
