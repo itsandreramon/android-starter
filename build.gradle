@@ -19,6 +19,7 @@ buildscript {
         classpath libs.kotlin.gradlePlugin
         classpath libs.kotlinx.kover.gradlePlugin
         classpath libs.google.hilt.gradlePlugin
+        classpath libs.apollo.gradlePlugin
     }
 }
 

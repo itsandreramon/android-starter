@@ -1,0 +1,5 @@
+query GetBookByUuidQuery($uuid: String!) {
+    getBookByUuid(uuid: $uuid) {
+        ...bookFragment
+    }
+}

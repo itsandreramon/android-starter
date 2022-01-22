@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.library'
+    id 'com.apollographql.apollo3'
     id 'com.google.secrets_gradle_plugin' version '0.6'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-android'
@@ -28,6 +29,13 @@ android {
     }
 }
 
+apollo {
+    packageName.set("app.example.graphql")
+    srcDir("src/main/graphql")
+    includes.add("**/*.graphql")
+    excludes.add("**/schema.json.graphql")
+}
+
 dependencies {
     coreLibraryDesugaring libs.android.desugar
 
@@ -44,8 +52,8 @@ dependencies {
 
     implementation libs.kotlinx.coroutines.core
 
-    implementation libs.square.retrofit.lib
-    implementation libs.square.retrofit.moshi
+    implementation libs.apollo.runtime
+
     implementation libs.square.okhttp.logging
 
     // implementation libs.dropbox.store

@@ -1,11 +1,11 @@
 package app.example.core.hilt
 
-import app.example.core.data.sources.example.ExampleLocalDataSource
-import app.example.core.data.sources.example.ExampleLocalDataSourceImpl
-import app.example.core.data.sources.example.ExampleRemoteDataSource
-import app.example.core.data.sources.example.ExampleRemoteDataSourceImpl
-import app.example.core.data.sources.example.ExampleRepository
-import app.example.core.data.sources.example.ExampleRepositoryImpl
+import app.example.core.data.sources.example.BookLocalDataSource
+import app.example.core.data.sources.example.BookLocalDataSourceImpl
+import app.example.core.data.sources.example.BookRemoteDataSource
+import app.example.core.data.sources.example.BookRemoteDataSourceImpl
+import app.example.core.data.sources.example.BookRepository
+import app.example.core.data.sources.example.BookRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -19,18 +19,18 @@ abstract class BindingExample {
     @Binds
     @Singleton
     abstract fun bindExampleRepository(
-        exampleRepository: ExampleRepositoryImpl
-    ): ExampleRepository
+        exampleRepository: BookRepositoryImpl
+    ): BookRepository
 
     @Binds
     @Singleton
     abstract fun bindExampleLocalDataSource(
-        exampleLocalDataSource: ExampleLocalDataSourceImpl
-    ): ExampleLocalDataSource
+        exampleLocalDataSource: BookLocalDataSourceImpl
+    ): BookLocalDataSource
 
     @Binds
     @Singleton
     abstract fun bindExampleRemoteDataSource(
-        exampleRemoteDataSource: ExampleRemoteDataSourceImpl
-    ): ExampleRemoteDataSource
+        exampleRemoteDataSource: BookRemoteDataSourceImpl
+    ): BookRemoteDataSource
 }

@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import app.example.core.data.type.Lce
-import app.example.core.domain.ExampleEntity
+import app.example.core.domain.BookEntity
 import app.example.core.util.CoroutineDispatcherProvider
 import app.example.core.util.trackInitializations
 import kotlinx.coroutines.CoroutineScope
@@ -19,57 +19,57 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @Dao
-interface ExampleRoomDao {
+interface BookRoomDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(examples: List<ExampleEntity>)
+    suspend fun insert(examples: List<BookEntity>)
 
-    @Query("SELECT * FROM examples")
-    fun getAll(): Flow<List<ExampleEntity>>
+    @Query("SELECT * FROM books")
+    fun getAll(): Flow<List<BookEntity>>
 
-    @Query("SELECT * FROM examples WHERE id = :id")
-    fun getById(id: Long): Flow<ExampleEntity>
+    @Query("SELECT * FROM books WHERE uuid = :uuid")
+    fun getByUuid(uuid: String): Flow<BookEntity>
 }
 
-interface ExampleLocalDataSource {
-    suspend fun insert(examples: List<ExampleEntity>)
-    suspend fun insert(example: ExampleEntity)
-    fun getAll(): Flow<Lce<List<ExampleEntity>>>
-    fun getById(id: Long): Flow<Lce<ExampleEntity>>
+interface BookLocalDataSource {
+    suspend fun insert(books: List<BookEntity>)
+    suspend fun insert(book: BookEntity)
+    fun getAll(): Flow<Lce<List<BookEntity>>>
+    fun getByUuid(uuid: String): Flow<Lce<BookEntity>>
 }
 
-class ExampleLocalDataSourceImpl @Inject constructor(
+class BookLocalDataSourceImpl @Inject constructor(
     private val applicationScope: CoroutineScope,
-    private val exampleRoomDao: ExampleRoomDao,
+    private val bookRoomDao: BookRoomDao,
     private val dispatcherProvider: CoroutineDispatcherProvider,
-) : ExampleLocalDataSource {
+) : BookLocalDataSource {
 
     init {
         trackInitializations(this)
     }
 
-    override suspend fun insert(examples: List<ExampleEntity>) {
+    override suspend fun insert(books: List<BookEntity>) {
         withContext(dispatcherProvider.database()) {
             applicationScope.launch {
-                exampleRoomDao.insert(examples)
+                bookRoomDao.insert(books)
             }.join()
         }
     }
 
-    override suspend fun insert(example: ExampleEntity) {
-        insert(listOf(example))
+    override suspend fun insert(book: BookEntity) {
+        insert(listOf(book))
     }
 
-    override fun getAll() = flow<Lce<List<ExampleEntity>>> {
-        exampleRoomDao.getAll()
+    override fun getAll() = flow<Lce<List<BookEntity>>> {
+        bookRoomDao.getAll()
             .flowOn(dispatcherProvider.database())
             .onStart { emit(Lce.Loading()) }
             .catch { emit(Lce.Error(it)) }
             .collect { emit(Lce.Content(it)) }
     }
 
-    override fun getById(id: Long) = flow<Lce<ExampleEntity>> {
-        exampleRoomDao.getById(id)
+    override fun getByUuid(uuid: String) = flow<Lce<BookEntity>> {
+        bookRoomDao.getByUuid(uuid)
             .flowOn(dispatcherProvider.database())
             .onStart { emit(Lce.Loading()) }
             .catch { emit(Lce.Error(it)) }

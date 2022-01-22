@@ -2,16 +2,16 @@ package app.example.core.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import app.example.core.data.sources.example.ExampleRoomDao
-import app.example.core.domain.ExampleEntity
+import app.example.core.data.sources.example.BookRoomDao
+import app.example.core.domain.BookEntity
 
 @Database(
     version = 1,
     entities = [
-        ExampleEntity::class
+        BookEntity::class
     ],
     exportSchema = true,
 )
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun exampleDao(): ExampleRoomDao
+    abstract fun bookDao(): BookRoomDao
 }

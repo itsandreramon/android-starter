@@ -43,6 +43,9 @@ cashapp-exhaustive-gradlePlugin = "app.cash.exhaustive:exhaustive-gradle:_"
 airbnb-mavericks-compose = "com.airbnb.android:mavericks-compose:_"
 airbnb-mavericks-testing = "com.airbnb.android:mavericks-testing:_"
 
+apollo-gradlePlugin = "com.apollographql.apollo3:apollo-gradle-plugin:3.0.0"
+apollo-runtime = "com.apollographql.apollo3:apollo-runtime:3.0.0"
+
 google-play-ktx = "com.google.android.play:core-ktx:_"
 
 google-maps-lib = "com.google.android.libraries.maps:maps:_"

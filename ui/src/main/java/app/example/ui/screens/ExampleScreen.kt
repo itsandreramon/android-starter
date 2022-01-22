@@ -8,9 +8,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import app.example.core.data.sources.example.ExampleRepository
+import app.example.core.data.sources.example.BookRepository
 import app.example.core.data.type.Lce
-import app.example.core.domain.ExampleEntity
+import app.example.core.domain.BookEntity
 import app.example.core.util.trackInitializations
 import app.example.core.util.trackRecompositions
 import app.example.ui.components.ExampleAppBar
@@ -31,24 +31,29 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 data class ExampleState(
-    val examples: Lce<List<ExampleEntity>> = Lce.Loading(),
+    val books: Lce<List<BookEntity>> = Lce.Loading(),
 ) : MavericksState
 
 class ExampleViewModel @AssistedInject constructor(
     @Assisted initialState: ExampleState,
-    private val exampleRepository: ExampleRepository,
+    private val bookRepository: BookRepository,
 ) : MavericksViewModel<ExampleState>(initialState) {
 
     init {
         trackInitializations(this)
 
         viewModelScope.launch {
-            exampleRepository.insert(ExampleEntity(name = "Example"))
+            bookRepository.insert(
+                book = BookEntity(
+                    title = "Harry Potter and the Philosopher's Stone",
+                    author = "J. K. Rowling"
+                )
+            )
         }
 
-        exampleRepository.getAll()
+        bookRepository.getAll()
             .onEach { delay(500) }
-            .onEach { setState { copy(examples = it) } }
+            .onEach { setState { copy(books = it) } }
             .launchIn(viewModelScope)
     }
 
@@ -57,15 +62,14 @@ class ExampleViewModel @AssistedInject constructor(
         override fun create(state: ExampleState): ExampleViewModel
     }
 
-    companion object : MavericksViewModelFactory<ExampleViewModel, ExampleState>
-    by hiltMavericksViewModelFactory()
+    companion object : MavericksViewModelFactory<ExampleViewModel, ExampleState> by hiltMavericksViewModelFactory()
 }
 
 @Composable
 fun ExampleScreen(viewModel: ExampleViewModel = mavericksViewModel()) {
     trackRecompositions("ExampleScreen")
 
-    val examplesLce = viewModel.collectAsState(ExampleState::examples)
+    val examplesLce = viewModel.collectAsState(ExampleState::books)
 
     Column {
         ExampleAppBar(title = "Examples")
@@ -78,7 +82,7 @@ fun ExampleScreen(viewModel: ExampleViewModel = mavericksViewModel()) {
                 is Lce.Content -> {
                     LazyColumn {
                         items(examples.packet) { example ->
-                            Text(example.name)
+                            Text(example.title)
                         }
                     }
                 }

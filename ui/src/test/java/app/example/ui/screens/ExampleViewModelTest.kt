@@ -1,11 +1,9 @@
 package app.example.ui.screens
 
 import app.cash.turbine.test
-import app.example.core.data.sources.example.ExampleRepository
+import app.example.core.data.sources.example.BookRepository
 import app.example.core.data.type.Lce
-import app.example.core.domain.ExampleEntity
 import app.example.ui.screens.mvrx.MvRxTestExtension
-import io.kotest.matchers.equality.shouldBeEqualToComparingFields
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.instanceOf
 import io.mockk.Runs
@@ -23,21 +21,21 @@ import org.junit.jupiter.api.extension.RegisterExtension
 class ExampleViewModelTest {
 
     private var exampleViewModel: ExampleViewModel? = null
-    private val exampleRepository: ExampleRepository = mockk()
+    private val bookRepository: BookRepository = mockk()
 
     @BeforeEach
     fun setUp() {
         coEvery {
-            exampleRepository.insert(any())
+            bookRepository.insert(any())
         } just Runs
 
         every {
-            exampleRepository.getAll()
+            bookRepository.getAll()
         } returns flowOf(Lce.Content(listOf()))
 
         exampleViewModel = ExampleViewModel(
             initialState = ExampleState(),
-            exampleRepository = exampleRepository
+            bookRepository = bookRepository
         )
     }
 
@@ -49,8 +47,8 @@ class ExampleViewModelTest {
     @Test
     fun example_test() = runTest {
         exampleViewModel!!.stateFlow.test {
-            awaitItem().examples shouldBe instanceOf<Lce.Loading<*>>()
-            awaitItem().examples shouldBe instanceOf<Lce.Content<*>>()
+            awaitItem().books shouldBe instanceOf<Lce.Loading<*>>()
+            awaitItem().books shouldBe instanceOf<Lce.Content<*>>()
         }
     }
 

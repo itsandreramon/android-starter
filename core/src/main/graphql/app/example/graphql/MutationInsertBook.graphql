@@ -1,0 +1,5 @@
+mutation InsertBookMutation($book: BookInput!) {
+    insertBook(book: $book) {
+        ...bookFragment
+    }
+}
