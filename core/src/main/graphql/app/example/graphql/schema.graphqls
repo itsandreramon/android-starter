@@ -1,0 +1,25 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+    getBookByUuid(uuid: String!): Book!
+    getAllBooks: [Book!]!
+}
+
+type Mutation {
+    insertBook(book: BookInput!): Book!
+}
+
+type Book {
+    uuid: String!
+    author: String!
+    title: String!
+    created: String!
+}
+
+input BookInput {
+    author: String!
+    title: String!
+}
