@@ -5,9 +5,9 @@ import static de.fayard.refreshVersions.core.Versions.versionFor
 buildscript {
     ext {
         buildConfig = [
-            'compileSdk': 33,
+            'compileSdk': 34,
             'minSdk'    : 24,
-            'targetSdk' : 33,
+            'targetSdk' : 34,
         ]
     }
 

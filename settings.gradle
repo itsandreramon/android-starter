@@ -6,8 +6,8 @@ pluginManagement {
 }
 
 plugins {
-    id 'com.gradle.enterprise' version '3.11.1'
-    id 'de.fayard.refreshVersions' version '0.50.2'
+    id 'com.gradle.enterprise' version '3.16.1'
+    id 'de.fayard.refreshVersions' version '0.60.3'
 }
 
 gradleEnterprise {
@@ -20,5 +20,3 @@ gradleEnterprise {
 include ':app'
 include ':core'
 include ':ui'
-
-enableFeaturePreview("VERSION_CATALOGS")
