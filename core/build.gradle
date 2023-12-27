@@ -35,10 +35,12 @@ android {
 }
 
 apollo {
-    packageName.set("app.example.graphql")
-    srcDir("src/main/graphql")
-    includes.add("**/*.graphql")
-    excludes.add("**/schema.json.graphql")
+    service("default") {
+        packageName.set("app.example.graphql")
+        srcDir("src/main/graphql")
+        includes.add("**/*.graphql")
+        excludes.add("**/schema.json.graphql")
+    }
 }
 
 dependencies {
