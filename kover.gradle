@@ -1,9 +1,0 @@
-apply plugin: 'kover'
-
-tasks.withType(Test) {
-    kover {
-        binaryReportFile.set(file("$buildDir/custom/result.bin"))
-        includes = ['app.example.*']
-        excludes = ['app.example.graphql.*']
-    }
-}

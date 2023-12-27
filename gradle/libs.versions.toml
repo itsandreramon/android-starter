@@ -15,26 +15,17 @@ androidx-room-ktx = "androidx.room:room-ktx:_"
 androidx-datastore = "androidx.datastore:datastore-preferences:_"
 
 kotlin-gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:_"
-kotlin-stdlib = "org.jetbrains.kotlin:kotlin-stdlib:_"
 
 kotlinx-coroutines-core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:_"
 kotlinx-coroutines-test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:_"
 kotlinx-coroutines-android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:_"
-kotlinx-coroutines-play = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:_"
-kotlinx-kover-gradlePlugin = "org.jetbrains.kotlinx:kover:_"
 
 compose-ui-ui = "androidx.compose.ui:ui:_"
 compose-ui-tooling = "androidx.compose.ui:ui-tooling:_"
 compose-material-material = "androidx.compose.material:material:_"
 compose-material-icons = "androidx.compose.material:material-icons-extended:_"
-compose-test-junit = "androidx.compose.ui:ui-test-junit4:_"
 
-google-play-ktx = "com.google.android.play:core-ktx:_"
-google-maps-lib = "com.google.android.libraries.maps:maps:_"
-google-maps-ktx = "com.google.maps.android:maps-ktx:_"
-google-maps-utils = "com.google.maps.android:maps-utils-ktx:_"
 google-accompanist-insets = "com.google.accompanist:accompanist-insets:_"
-google-accompanist-systemuicontroller = "com.google.accompanist:accompanist-systemuicontroller:_"
 google-hilt-android = "com.google.dagger:hilt-android:_"
 google-hilt-gradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:_"
 google-hilt-compiler = "com.google.dagger:hilt-compiler:_"
@@ -64,16 +55,13 @@ square-leakCanary = "com.squareup.leakcanary:leakcanary-android:_"
 square-logcat = "com.squareup.logcat:logcat:_"
 
 cashapp-turbine = "app.cash.turbine:turbine:_"
-cashapp-exhaustive-gradlePlugin = "app.cash.exhaustive:exhaustive-gradle:_"
 
 airbnb-mavericks-compose = "com.airbnb.android:mavericks-compose:_"
 airbnb-mavericks-hilt = "com.airbnb.android:mavericks-hilt:_"
 airbnb-mavericks-testing = "com.airbnb.android:mavericks-testing:_"
 
 kotest-assertions = "io.kotest:kotest-assertions-core:_"
-dropbox-store = "com.dropbox.mobile.store:store4:_"
 pinterest-ktlint = "com.pinterest:ktlint:_"
-slack-eithernet = "com.slack.eithernet:eithernet:_"
 
 junit4 = "junit:junit:_"
 junit5 = "org.junit.jupiter:junit-jupiter:_"

@@ -19,7 +19,6 @@ buildscript {
     dependencies {
         classpath libs.android.gradlePlugin
         classpath libs.kotlin.gradlePlugin
-        classpath libs.kotlinx.kover.gradlePlugin
         classpath libs.google.secrets.gradlePlugin
         classpath libs.google.hilt.gradlePlugin
         classpath libs.apollo.gradlePlugin
@@ -35,7 +34,6 @@ allprojects {
 
 subprojects {
     apply from: rootProject.file('ktlint.gradle')
-    apply from: rootProject.file('kover.gradle')
 
     tasks.withType(Test) {
         useJUnitPlatform()
@@ -69,5 +67,3 @@ subprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
-task kover(group: 'verification', dependsOn: ['app:testDebugUnitTest', 'koverCollectReports'])
