@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import app.example.ui.theme.padding_medium
 
 @Composable
-fun ExampleAppBar(title: String, actions: List<AppBarAction> = listOf()) {
+fun ExampleAppBar(title: String) {
     Surface(elevation = 0.dp, color = MaterialTheme.colors.surface) {
         Column(
             modifier = Modifier
@@ -31,16 +31,4 @@ fun ExampleAppBar(title: String, actions: List<AppBarAction> = listOf()) {
             Text(text = title, style = MaterialTheme.typography.h4, fontWeight = FontWeight.Black)
         }
     }
-}
-
-sealed class AppBarAction(
-    val icon: ImageVector,
-    val contentDescription: String?,
-    val onClick: () -> Unit,
-) {
-    class Back(onClick: () -> Unit) : AppBarAction(
-        icon = Icons.Filled.ArrowBack,
-        contentDescription = "Back",
-        onClick = onClick,
-    )
 }

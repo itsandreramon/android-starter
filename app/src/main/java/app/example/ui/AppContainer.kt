@@ -30,24 +30,3 @@ fun AppContainer() {
 fun AppContent(navController: NavHostController) {
     NavContainer(navController)
 }
-
-@Composable
-fun ExampleBottomAppBar(navController: NavHostController) {
-    val items = listOf(Screen.One, Screen.Two)
-    val currentNavBackStackEntry by navController.currentBackStackEntryAsState()
-
-    ExampleBottomNavigation(
-        items = items,
-        currentNavBackStackEntry = currentNavBackStackEntry,
-        onClick = { screen ->
-            navController.navigate(screen.route) {
-                popUpTo(navController.graph.startDestinationRoute!!) {
-                    saveState = true
-                }
-
-                launchSingleTop = true
-                restoreState = true
-            }
-        },
-    )
-}
