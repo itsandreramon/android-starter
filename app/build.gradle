@@ -1,9 +1,8 @@
 plugins {
     id 'com.android.application'
-    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
-    id 'dagger.hilt.android.plugin'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -46,7 +45,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion "1.5.7"
+        kotlinCompilerExtensionVersion libs.versions.compose.compiler
     }
 }
 
@@ -54,10 +53,10 @@ dependencies {
     implementation project(':core')
     implementation project(':ui')
 
-    coreLibraryDesugaring libs.android.desugar
+    coreLibraryDesugaring libs.desugar
 
-    implementation libs.google.hilt.android
-    kapt libs.google.hilt.compiler
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
 
     implementation libs.androidx.activity.compose
     implementation libs.androidx.navigation.compose
@@ -67,13 +66,11 @@ dependencies {
     implementation libs.compose.material.material
     implementation libs.compose.material.icons
 
-    implementation libs.airbnb.mavericks.compose
-    implementation libs.google.accompanist.insets
+    implementation libs.mavericks.compose
+    implementation libs.accompanist.insets
 
-    api libs.square.retrofit.lib
-    api libs.square.okhttp.logging
+    api libs.retrofit.lib
+    api libs.okhttp.logging
 
-    implementation libs.square.logcat
-
-    debugImplementation libs.square.leakCanary
+    debugImplementation libs.leakCanary
 }

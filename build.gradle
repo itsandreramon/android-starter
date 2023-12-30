@@ -1,7 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-import static de.fayard.refreshVersions.core.Versions.versionFor
-
 buildscript {
     ext {
         buildConfig = [
@@ -10,19 +8,15 @@ buildscript {
             'targetSdk' : 34,
         ]
     }
+}
 
-    repositories {
-        google()
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath libs.android.gradlePlugin
-        classpath libs.kotlin.gradlePlugin
-        classpath libs.google.secrets.gradlePlugin
-        classpath libs.google.hilt.gradlePlugin
-        classpath libs.apollo.gradlePlugin
-    }
+plugins {
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.kapt) apply false
+    alias(libs.plugins.kotlin.parcelize) apply false
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.apollo) apply false
 }
 
 allprojects {
@@ -33,8 +27,6 @@ allprojects {
 }
 
 subprojects {
-    apply from: rootProject.file('ktlint.gradle')
-
     tasks.withType(Test) {
         useJUnitPlatform()
     }
@@ -65,5 +57,5 @@ subprojects {
 }
 
 task clean(type: Delete) {
-    delete rootProject.buildDir
+    delete rootProject.layout.buildDirectory
 }

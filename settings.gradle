@@ -1,13 +1,20 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()
+        google()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 
 plugins {
     id 'com.gradle.enterprise' version '3.16.1'
-    id 'de.fayard.refreshVersions' version '0.60.3'
+}
+
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+    }
 }
 
 gradleEnterprise {

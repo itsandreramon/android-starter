@@ -36,7 +36,7 @@ jobs:
         run: touch local.properties
 
       - name: Run lint
-        run: ./gradlew app:lintDebug ktlintCheck
+        run: ./gradlew app:lintDebug
 
       - name: Build and test project
         run: ./gradlew build testDebugUnitTest --stacktrace --scan

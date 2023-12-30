@@ -1,11 +1,10 @@
 plugins {
     id 'com.android.library'
-    id 'com.apollographql.apollo3'
-    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
-    id 'dagger.hilt.android.plugin'
     id 'kotlin-android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+    id 'com.apollographql.apollo3'
 }
 
 android {
@@ -44,12 +43,12 @@ apollo {
 }
 
 dependencies {
-    coreLibraryDesugaring libs.android.desugar
+    coreLibraryDesugaring libs.desugar
 
     implementation libs.androidx.core
 
-    implementation libs.google.hilt.android
-    kapt libs.google.hilt.compiler
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
 
     kapt libs.androidx.room.compiler
     implementation libs.androidx.room.runtime
@@ -57,22 +56,18 @@ dependencies {
 
     implementation libs.androidx.datastore
 
-    implementation libs.kotlinx.coroutines.core
+    implementation libs.coroutines.core
 
     implementation libs.apollo.runtime
 
-    implementation libs.square.okhttp.logging
-    implementation libs.square.retrofit.lib
-    implementation libs.square.retrofit.moshi
-    implementation libs.square.logcat
+    implementation libs.okhttp.logging
+    implementation libs.retrofit.lib
+    implementation libs.retrofit.moshi
 
-    // implementation libs.dropbox.store
-    // implementation libs.slack.eithernet
-
-    testImplementation libs.junit5
+    testImplementation libs.junit
 
     testImplementation libs.mockk
-    testImplementation libs.kotlinx.coroutines.test
-    testImplementation libs.kotest.assertions
-    testImplementation libs.cashapp.turbine
+    testImplementation libs.kotest
+    testImplementation libs.turbine
+    testImplementation libs.coroutines.test
 }

@@ -1,9 +1,8 @@
 plugins {
     id 'com.android.library'
-    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
-    id 'dagger.hilt.android.plugin'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -26,17 +25,17 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion "1.5.7"
+        kotlinCompilerExtensionVersion libs.versions.compose.compiler
     }
 }
 
 dependencies {
     implementation project(':core')
 
-    coreLibraryDesugaring libs.android.desugar
+    coreLibraryDesugaring libs.desugar
 
-    implementation libs.google.hilt.android
-    kapt libs.google.hilt.compiler
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
 
     implementation libs.androidx.lifecycle.runtime
     implementation libs.androidx.activity.compose
@@ -47,17 +46,15 @@ dependencies {
     implementation libs.compose.material.material
     implementation libs.compose.material.icons
 
-    implementation libs.airbnb.mavericks.compose
-    implementation libs.airbnb.mavericks.hilt
+    implementation libs.mavericks.compose
+    implementation libs.mavericks.hilt
 
-    implementation libs.google.accompanist.insets
+    implementation libs.accompanist.insets
 
-    implementation libs.square.logcat
-
-    testImplementation libs.junit5
+    testImplementation libs.junit
     testImplementation libs.mockk
-    testImplementation libs.cashapp.turbine
-    testImplementation libs.kotest.assertions
-    testImplementation libs.kotlinx.coroutines.test
-    testImplementation libs.airbnb.mavericks.testing
+    testImplementation libs.turbine
+    testImplementation libs.kotest
+    testImplementation libs.coroutines.test
+    testImplementation libs.mavericks.testing
 }
