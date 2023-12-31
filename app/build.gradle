@@ -55,21 +55,10 @@ dependencies {
 
     coreLibraryDesugaring libs.desugar
 
+    implementation libs.timber
+
     implementation libs.hilt.android
     kapt libs.hilt.compiler
-
-    implementation libs.androidx.activity.compose
-    implementation libs.androidx.navigation.compose
-
-    implementation libs.compose.ui.ui
-    implementation libs.compose.ui.tooling
-    implementation libs.compose.material.material
-    implementation libs.compose.material.icons
-
-    implementation libs.mavericks.compose
-    implementation libs.accompanist.insets
-
-    implementation libs.timber
 
     debugImplementation libs.leakCanary
 }

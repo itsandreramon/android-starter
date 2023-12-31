@@ -38,18 +38,18 @@ dependencies {
     kapt libs.hilt.compiler
 
     implementation libs.androidx.lifecycle.runtime
-    implementation libs.androidx.activity.compose
+    api libs.androidx.activity.compose
     api libs.androidx.navigation.compose
 
-    implementation libs.compose.ui.ui
-    implementation libs.compose.ui.tooling
-    implementation libs.compose.material.material
-    implementation libs.compose.material.icons
+    api libs.compose.ui.ui
+    api libs.compose.ui.tooling
+    api libs.compose.material.material
+    api libs.compose.material.icons
 
-    implementation libs.mavericks.compose
+    api libs.mavericks.compose
     implementation libs.mavericks.hilt
 
-    implementation libs.accompanist.insets
+    api libs.accompanist.insets
 
     testImplementation libs.junit
     testImplementation libs.mockk

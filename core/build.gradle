@@ -60,10 +60,10 @@ dependencies {
     implementation libs.apollo.api
     implementation libs.apollo.runtime
 
-    api libs.okhttp.logging
+    implementation libs.okhttp.logging
     implementation libs.okhttp.core
 
-    api libs.retrofit.lib
+    implementation libs.retrofit.lib
     implementation libs.retrofit.moshi
 
     implementation libs.timber
