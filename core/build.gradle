@@ -1,10 +1,10 @@
 plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-    id 'kotlin-parcelize'
-    id 'kotlin-kapt'
-    id 'com.google.dagger.hilt.android'
-    id 'com.apollographql.apollo3'
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.apollo)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -45,24 +45,28 @@ apollo {
 dependencies {
     coreLibraryDesugaring libs.desugar
 
-    implementation libs.androidx.core
-
     implementation libs.hilt.android
     kapt libs.hilt.compiler
+
+    implementation libs.androidx.core
+    implementation libs.androidx.datastore
 
     kapt libs.androidx.room.compiler
     implementation libs.androidx.room.runtime
     implementation libs.androidx.room.ktx
 
-    implementation libs.androidx.datastore
-
     implementation libs.coroutines.core
 
+    implementation libs.apollo.api
     implementation libs.apollo.runtime
 
-    implementation libs.okhttp.logging
-    implementation libs.retrofit.lib
+    api libs.okhttp.logging
+    implementation libs.okhttp.core
+
+    api libs.retrofit.lib
     implementation libs.retrofit.moshi
+
+    implementation libs.timber
 
     testImplementation libs.junit
 

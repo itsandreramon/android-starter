@@ -1,8 +1,8 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'com.google.dagger.hilt.android'
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -17,7 +17,6 @@ android {
         versionCode 1
 
         applicationId "app.example"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -41,11 +40,12 @@ android {
     }
 
     buildFeatures {
+        buildConfig true
         compose true
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion libs.versions.compose.compiler
+        kotlinCompilerExtensionVersion libs.versions.compose.compiler.get()
     }
 }
 
@@ -69,8 +69,7 @@ dependencies {
     implementation libs.mavericks.compose
     implementation libs.accompanist.insets
 
-    api libs.retrofit.lib
-    api libs.okhttp.logging
+    implementation libs.timber
 
     debugImplementation libs.leakCanary
 }

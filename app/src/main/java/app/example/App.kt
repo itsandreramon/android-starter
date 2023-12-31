@@ -5,8 +5,7 @@ import com.airbnb.mvrx.Mavericks
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
-import logcat.AndroidLogcatLogger
-import logcat.LogPriority.VERBOSE
+import timber.log.Timber
 
 @HiltAndroidApp
 class App : Application() {
@@ -17,9 +16,8 @@ class App : Application() {
         super.onCreate()
         Mavericks.initialize(applicationContext)
 
-        AndroidLogcatLogger.installOnDebuggableApp(
-            application = this,
-            minPriority = VERBOSE,
-        )
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
     }
 }

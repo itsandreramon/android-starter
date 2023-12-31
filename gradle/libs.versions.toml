@@ -13,7 +13,6 @@ compose = "1.5.4"
 compose-compiler = "1.5.7"
 
 apollo = "3.8.2"
-ktlint = "0.5.0"
 coroutines = "1.7.3"
 accompanist = "0.30.1"
 mavericks = "3.0.8"
@@ -23,6 +22,7 @@ leakcanary = "2.12"
 okhttp = "4.12.0"
 retrofit = "2.9.0"
 
+timber = "5.0.1"
 turbine = "1.0.0"
 kotest = "5.8.0"
 mockk = "1.13.8"
@@ -35,7 +35,7 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 apollo = { id = "com.apollographql.apollo3", version.ref = "apollo" }
-hilt = { id = "com.google.dagger.hilt.android", version = "dagger" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
 
 [libraries]
 desugar = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar" }
@@ -76,6 +76,7 @@ mavericks-compose = { module = "com.airbnb.android:mavericks-compose", version.r
 mavericks-hilt = { module = "com.airbnb.android:mavericks-hilt", version.ref = "mavericks" }
 mavericks-testing = { module = "com.airbnb.android:mavericks-testing", version.ref = "mavericks" }
 
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 kotest = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }

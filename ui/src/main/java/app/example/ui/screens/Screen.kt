@@ -7,6 +7,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import app.example.ui.R
 
 sealed class Screen(val route: String, @StringRes val titleResId: Int, val icon: ImageVector?) {
-    object One : Screen("one", R.string.screen_title_one, Icons.Filled.People)
-    object Two : Screen("two", R.string.screen_title_two, Icons.Filled.People)
+    data object One : Screen("one", R.string.screen_title_one, Icons.Filled.People)
+    data object Two : Screen("two", R.string.screen_title_two, Icons.Filled.People)
 }

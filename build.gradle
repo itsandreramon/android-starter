@@ -11,23 +11,17 @@ buildscript {
 }
 
 plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.kapt) apply false
     alias(libs.plugins.kotlin.parcelize) apply false
-    alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.android.library) apply false
     alias(libs.plugins.apollo) apply false
-}
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
+    alias(libs.plugins.hilt) apply false
 }
 
 subprojects {
-    tasks.withType(Test) {
+    tasks.withType(Test).configureEach {
         useJUnitPlatform()
     }
 
@@ -44,18 +38,9 @@ subprojects {
     configurations.configureEach {
         exclude group: 'androidx.appcompat'
         exclude group: 'com.google.android.material', module: 'material'
-
-        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-            def group = details.requested.group
-            def module = details.requested.module.name
-
-            if (group == 'org.jetbrains.kotlin' && module.startsWith('kotlin-stdlib')) {
-                details.useVersion versionFor(project, "version.kotlin")
-            }
-        }
     }
 }
 
-task clean(type: Delete) {
+tasks.register('clean', Delete) {
     delete rootProject.layout.buildDirectory
 }
