@@ -25,7 +25,7 @@ retrofit = "2.9.0"
 timber = "5.0.1"
 turbine = "1.0.0"
 kotest = "5.8.0"
-mockk = "1.13.8"
+mockk = "1.13.10"
 junit = "5.10.1"
 
 [plugins]
