@@ -1,5 +1,5 @@
 [versions]
-kotlin = "1.9.21"
+kotlin = "1.9.23"
 agp = "8.2.0"
 
 androidx-core = "1.12.0"
