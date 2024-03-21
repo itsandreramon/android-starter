@@ -9,7 +9,7 @@ androidx-activity = "1.8.2"
 androidx-room = "2.6.1"
 androidx-navigation = "2.7.6"
 
-compose = "1.5.4"
+compose = "1.6.4"
 compose-compiler = "1.5.7"
 
 apollo = "3.8.2"
